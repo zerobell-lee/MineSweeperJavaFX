@@ -1,0 +1,88 @@
+.bg_black {
+	-fx-background-color: #000000;
+}
+.bg_white {
+	-fx-background-color: #ffffff;
+}
+.closed {
+	-fx-background-color:  #232526,
+        linear-gradient(#414345 0%, #232526 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #ffffff;
+	-fx-background-radius: 5;
+}
+.closed:hover {
+	-fx-background-color:  #232526,
+        linear-gradient(#414345 0%, #232526 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #ffffff;
+	-fx-opacity: 0.6;
+	-fx-background-radius: 5;
+}
+.opened {
+	-fx-background-color: #ffffff;
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.opened:hover {
+	-fx-background-color: #ffffff;
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.marked {
+	-fx-background-color: #a73737,
+        linear-gradient(#a73737 0%, #7a2828 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.marked:hover {
+	-fx-background-color: #a73737,
+        linear-gradient(#a73737 0%, #7a2828 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.question {
+	-fx-background-color: #3498db,
+        linear-gradient(#3498db 0%, #2c3e50 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.question:hover {
+	-fx-background-color: #3498db,
+        linear-gradient(#3498db 0%, #2c3e50 100%);
+	-fx-padding: 0 0 0 0;
+    -fx-text-fill: #000000;
+	-fx-font-size: 7px;
+	-fx-alignment: center;
+	-fx-background-radius: 5;
+}
+.gameready {
+	-fx-background-image: url("game_ready.png");
+	-fx-padding: 0 0 0 0;
+	-fx-background-radius: 5;
+}
+.gameover {
+	-fx-background-image: url("game_over.png");
+	-fx-padding: 0 0 0 0;
+	-fx-background-radius: 5;
+}
+.gameend {
+	-fx-background-image: url("game_end.png");
+	-fx-padding: 0 0 0 0;
+	-fx-border-radius: 5;
+}

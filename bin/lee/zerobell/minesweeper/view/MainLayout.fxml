@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="300.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lee.zerobell.minesweeper.MineSweeperController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="New">
+                  <items>
+                    <MenuItem fx:id="menu_easy" mnemonicParsing="false" onAction="#start_easy" text="Easy" />
+                        <MenuItem fx:id="menu_normal" mnemonicParsing="false" onAction="#start_normal" text="Normal" />
+                        <MenuItem fx:id="menu_hard" mnemonicParsing="false" onAction="#start_hard" text="Hard" />
+                        <MenuItem fx:id="menu_custom" mnemonicParsing="false" onAction="#start_custom" text="Custom" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menu_about" mnemonicParsing="false" onAction="#show_about" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox fx:id="controlLayout" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="120.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="70.0">
+                     <children>
+                        <Label alignment="TOP_CENTER" prefHeight="15.0" prefWidth="111.0" text="Mine" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="mineLabel" alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="112.0" text="0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Button fx:id="resetBtn" alignment="CENTER" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" textAlignment="CENTER" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="90.0" prefWidth="70.0">
+                     <children>
+                        <Label alignment="TOP_CENTER" prefHeight="15.0" prefWidth="119.0" text="Time" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="timeLabel" alignment="BOTTOM_CENTER" prefHeight="15.0" prefWidth="113.0" text="0" textAlignment="CENTER">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </HBox>
+            <StackPane fx:id="mineLayout" prefHeight="250.0" prefWidth="250.0">
+               <children>
+                  <GridPane fx:id="minePane">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </StackPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
