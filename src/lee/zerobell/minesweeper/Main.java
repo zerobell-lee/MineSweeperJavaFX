@@ -16,6 +16,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+		stage = primaryStage;
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("view/MainLayout.fxml"));
@@ -30,7 +31,7 @@ public class Main extends Application {
 		final Scene scene = new Scene(mainPane);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		stage = primaryStage;
+		
 	}
 	
 	public void setWindowSize(int width, int height) {

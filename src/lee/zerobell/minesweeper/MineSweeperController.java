@@ -4,8 +4,10 @@ import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -37,6 +39,7 @@ public class MineSweeperController {
 		setMinePaneSize();
 		getReady();
 		resetBtn.setOnAction(e->restart());
+		start_easy();
 	}
 	
 	@FXML
@@ -59,6 +62,17 @@ public class MineSweeperController {
 	
 	@FXML
 	public void start_easy(Event e) {
+		main.setWindowSize(310, 410);
+		model.setMode(Util.MODE_EASY);
+		controlLayout.setPrefHeight(100);
+		mineLayout.setPrefWidth(Util.TILE_WIDTH * Util.MODE_EASY[0]);
+		mineLayout.setPrefHeight(Util.TILE_HEIGHT * Util.MODE_EASY[1]);
+		minePane.getChildren().clear();
+		setMinePaneSize();
+		getReady();
+	}
+	
+	public void start_easy() {
 		main.setWindowSize(310, 410);
 		model.setMode(Util.MODE_EASY);
 		controlLayout.setPrefHeight(100);
@@ -100,7 +114,12 @@ public class MineSweeperController {
 	
 	@FXML
 	public void show_about(Event e) {
-		
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("About");
+		alert.setHeaderText("MineSweeper Ver 0.1");
+		alert.setContentText("Programmed by Zerobell Lee.");
+
+		alert.showAndWait();
 	}
 	
 	public void startTimer() {
