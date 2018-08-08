@@ -29,6 +29,11 @@
                         <MenuItem fx:id="menu_custom" mnemonicParsing="false" onAction="#start_custom" text="Custom" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Record">
+                    <items>
+                      <MenuItem fx:id="menuViewRecord" mnemonicParsing="false" onAction="#viewRecord" text="View Record" />
+                    </items>
+                  </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
                     <MenuItem fx:id="menu_about" mnemonicParsing="false" onAction="#show_about" text="About" />

@@ -1,18 +1,27 @@
 package lee.zerobell.minesweeper;
 
+import java.io.IOException;
+import java.util.Optional;
+import java.util.prefs.Preferences;
+
 import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import lee.zerobell.minesweeper.model.*;
 
 public class MineSweeperController {
@@ -20,6 +29,8 @@ public class MineSweeperController {
 	private MineModel model;
 	private Thread timerThread;
 	private Main main;
+	
+	private String level;
 	
 	public MineSweeperController() {
 		this.model = new MineModel();
@@ -62,6 +73,8 @@ public class MineSweeperController {
 	
 	@FXML
 	public void start_easy(Event e) {
+		this.level = "easy";
+		
 		main.setWindowSize(310, 410);
 		model.setMode(Util.MODE_EASY);
 		controlLayout.setPrefHeight(100);
@@ -73,6 +86,8 @@ public class MineSweeperController {
 	}
 	
 	public void start_easy() {
+		this.level = "easy";
+		
 		main.setWindowSize(310, 410);
 		model.setMode(Util.MODE_EASY);
 		controlLayout.setPrefHeight(100);
@@ -85,6 +100,8 @@ public class MineSweeperController {
 	
 	@FXML
 	public void start_normal(Event e) {
+		this.level = "normal";
+		
 		main.setWindowSize(600, 600);
 		mineLayout.setPrefWidth(Util.TILE_WIDTH * Util.MODE_NORMAL[0]);
 		mineLayout.setPrefHeight(Util.TILE_HEIGHT * Util.MODE_NORMAL[1]);
@@ -97,6 +114,8 @@ public class MineSweeperController {
 	
 	@FXML
 	public void start_hard(Event e) {
+		this.level = "hard";
+		
 		main.setWindowSize(800, 800);
 		mineLayout.setPrefWidth(Util.TILE_WIDTH * Util.MODE_HARD[0]);
 		mineLayout.setPrefHeight(Util.TILE_HEIGHT * Util.MODE_HARD[1]);
@@ -116,10 +135,15 @@ public class MineSweeperController {
 	public void show_about(Event e) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("About");
-		alert.setHeaderText("MineSweeper Ver 0.1");
+		alert.setHeaderText("MineSweeper Ver 0.11");
 		alert.setContentText("Programmed by Zerobell Lee.");
 
 		alert.showAndWait();
+	}
+	
+	@FXML
+	public void viewRecord(Event e) {
+		main.showRecord();
 	}
 	
 	public void startTimer() {
@@ -170,8 +194,57 @@ public class MineSweeperController {
 	public void gameOver(boolean victory) {
 		model.setState(Util.GAMEOVER);
 		if (victory) {
+			Preferences prefs = Preferences.userNodeForPackage(Main.class);
 			resetBtn.getStyleClass().clear();
 			resetBtn.getStyleClass().add("gameend");
+			
+			int thisTime = Integer.parseInt(timeLabel.getText());
+			int recordTime;
+			
+			TextInputDialog dialog = new TextInputDialog("zerobell");
+			dialog.setTitle("Write your name");
+			dialog.setHeaderText("Congratulations! You've broken the record.");
+			dialog.setContentText("Input your name");
+			
+			if (this.level == "easy") {
+				recordTime = Integer.parseInt(prefs.get("easy_record", "999"));
+				if (thisTime<recordTime) {
+					Optional<String> newName = dialog.showAndWait();
+					if (newName.isPresent()) {
+						prefs.put("easy_name", newName.get());
+					}
+					else {
+						prefs.put("easy_name", "zerobell");
+					}
+					prefs.put("easy_record", String.valueOf(thisTime));
+				}
+			}
+			else if (this.level == "normal") {
+				recordTime = Integer.parseInt(prefs.get("normal_record", "999"));
+				if (thisTime<recordTime) {
+					Optional<String> newName = dialog.showAndWait();
+					if (newName.isPresent()) {
+						prefs.put("normal_name", newName.get());
+					}
+					else {
+						prefs.put("normal_name", "zerobell");
+					}
+					prefs.put("normal_record", String.valueOf(thisTime));
+				}
+			}
+			else if (this.level == "hard") {
+				recordTime = Integer.parseInt(prefs.get("hard_record", "999"));
+				if (thisTime<recordTime) {
+					Optional<String> newName = dialog.showAndWait();
+					if (newName.isPresent()) {
+						prefs.put("hard_name", newName.get());
+					}
+					else {
+						prefs.put("hard_name", "zerobell");
+					}
+					prefs.put("hard_record", String.valueOf(thisTime));
+				}
+			}
 		}
 		else {
 			resetBtn.getStyleClass().clear();

@@ -47,4 +47,30 @@ public class Main extends Application {
 	public void setSize(int width, int height) {
 		
 	}
+	
+	public void showRecord() {
+		AnchorPane recordPane;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/RecordLayout.fxml"));
+			
+			recordPane = (AnchorPane) loader.load();
+			ViewRecordController viewRecordController = loader.getController();
+			
+
+			Scene recordScene = new Scene(recordPane);
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Record");
+			dialogStage.initOwner(stage);
+			dialogStage.setScene(recordScene);
+			
+			viewRecordController.setDialogStage(dialogStage);
+			viewRecordController.init();
+			
+			dialogStage.showAndWait();;
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+	}
 }
