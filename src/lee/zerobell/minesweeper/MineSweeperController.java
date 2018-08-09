@@ -128,14 +128,57 @@ public class MineSweeperController {
 	
 	@FXML
 	public void start_custom(Event e) {
+		AnchorPane customPane;
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("view/CustomLayout.fxml"));
+			
+			customPane = (AnchorPane) loader.load();
+			CustomController customController = loader.getController();
+			
+
+			Scene customScene = new Scene(customPane);
+			
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Custom Game");
+			dialogStage.initOwner(main.getStage());
+			dialogStage.setScene(customScene);
+			
+			customController.setDialogStage(dialogStage);
+			customController.init();
+			customController.setMCController(this);
+			
+			dialogStage.showAndWait();;
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+	}
+	
+	public void set_custom(int cols, int rows, int mines) {
+		this.level = "custom";
 		
+		calcSize(new int[]{ cols, rows });
+		model.setMode(new int[] {cols, rows, mines});
+		minePane.getChildren().clear();
+		setMinePaneSize();
+		getReady();
+	}
+	
+	public void calcSize(int[] setting) {
+		int paneWidth = Util.TILE_WIDTH * setting[0];
+		int paneHeight = Util.TILE_HEIGHT * setting[1];
+		
+		main.setWindowSize(paneWidth + 100, paneHeight + 200);
+		mineLayout.setPrefSize(paneWidth, paneHeight);
+		controlLayout.setPrefHeight(100);
 	}
 	
 	@FXML
 	public void show_about(Event e) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("About");
-		alert.setHeaderText("MineSweeper Ver 0.11");
+		alert.setHeaderText("MineSweeper Ver 0.12");
 		alert.setContentText("Programmed by Zerobell Lee.");
 
 		alert.showAndWait();

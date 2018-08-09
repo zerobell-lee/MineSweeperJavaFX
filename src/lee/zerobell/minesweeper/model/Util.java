@@ -39,6 +39,14 @@ public class Util {
 	public static final int SECONDARY_CLICKED = 2;
 	public static final int DUAL_CLICKED = 3;
 	
+	public static final int MAX_ROW = 24;
+	public static final int MAX_COL = 30;
+	public static final int MAX_MINE = 667;
+	
+	public static final int MIN_ROW = 9;
+	public static final int MIN_COL = 9;
+	public static final int MIN_MINE = 10;
+	
 	static public void setImages() {
 		Image img1 = new Image(Main.class.getResource("view/game_ready.png").toString());
 		Image img2 = new Image(Main.class.getResource("view/game_over.png").toString());

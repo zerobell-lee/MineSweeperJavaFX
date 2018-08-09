@@ -48,6 +48,10 @@ public class Main extends Application {
 		
 	}
 	
+	public Stage getStage() {
+		return stage;
+	}
+	
 	public void showRecord() {
 		AnchorPane recordPane;
 		try {
